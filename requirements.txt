@@ -1,2 +1,4 @@
 pillow
 py7zr
+zipfile
+shutil
