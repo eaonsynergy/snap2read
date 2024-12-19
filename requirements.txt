@@ -1,0 +1,2 @@
+pillow
+py7zr

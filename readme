@@ -1,0 +1,73 @@
+# Snap2Read 1.0
+
+## Overview
+This program is designed to convert image-based ebooks (e.g., manga or comics) into popular formats: PDF, CBZ, CB7, or CBR. It offers customizable cropping options to fine-tune the appearance of the final output, ensuring optimal compatibility with e-readers. The program was specifically developed to preserve and access legally purchased ebooks on devices that do not support native export from proprietary platforms.
+
+## Features
+- Supports multiple image formats: JPG, JPEG, PNG, and WEBP.
+- Converts images into:
+  - PDF (single or multiple files)
+  - CBZ (Comic Book ZIP)
+  - CB7 (Comic Book 7z)
+  - CBR (Comic Book RAR)
+- Customizable cropping for all sides of the images (top, bottom, left, and right).
+- Processes multiple subfolders automatically, creating one archive per folder.
+- Outputs files with the name of the processed subfolder.
+
+## Installation
+1. Clone the repository or download the source code.
+2. Install Python 3.9 or newer.
+3. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Ensure the `rar` CLI tool is installed and accessible (required for CBR output).
+
+## Requirements
+Place the following content into a `requirements.txt` file:
+```
+pillow
+py7zr
+```
+
+## Usage
+1. Prepare a folder structure:
+   - The parent folder `IMG/` should contain subfolders.
+   - Each subfolder should hold the images for a specific ebook or chapter.
+
+2. Run the program:
+   ```bash
+   python script.py
+   ```
+   Customize parameters within the `process_subfolders_to_archives` function:
+   - `archive_type`: Choose between `pdf`, `cbz`, `cb7`, or `cbr`.
+   - `crop_margins`: Define crop sizes for `top`, `bottom`, `left`, and `right` (in pixels).
+
+### Example
+```python
+process_subfolders_to_archives(
+    'IMG/',
+    archive_type="cbz",
+    crop_margins={"top": 10, "bottom": 10, "left": 20, "right": 20}
+)
+```
+
+## Supported Formats
+| Format | Extension | Description |
+|--------|-----------|-------------|
+| PDF    | `.pdf`    | Versatile format for viewing on most devices. |
+| CBZ    | `.cbz`    | Comic Book format using ZIP compression. Easy to open with readers like CDisplayEx. |
+| CB7    | `.cb7`    | Comic Book format using 7z compression for smaller file sizes. |
+| CBR    | `.cbr`    | Comic Book format using RAR compression. |
+
+## Notes
+- Ensure that your image files are correctly named to ensure proper page order.
+- The program replaces unreadable images with red placeholder pages.
+- The RAR CLI tool must be installed and in your system path for CBR generation.
+
+## Personal Workflow
+When capturing images, I use my smartphone to take screenshots of each page of the ebook in the legal platform's app. Since these screenshots include extra information such as time, date, battery status, and notifications, the cropping functionality of this program becomes essential. It allows me to remove these irrelevant elements and focus solely on the ebook content.
+
+## Legal Disclaimer
+This tool is intended for personal use only. Ensure you comply with the terms and conditions of any ebook or content platform from which you source your files. The developer is not responsible for misuse of this software.
+
